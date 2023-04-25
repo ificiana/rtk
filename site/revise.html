@@ -1,0 +1,78 @@
+---
+permalink: /revise.html
+layot: single
+author_profile: false
+---
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Shippori Mincho">
+<script src="kanji.js"></script>
+<script>
+    const searchParams = new URLSearchParams(window.location.search)
+    const kanji_q = searchParams.get("")
+    const kanji = kanji_db[kanji_q]
+</script>
+
+<div class="wrapper">
+    <div style="text-align: center;">
+        <p><span id="kanji-name"></span><br>
+        <span id="rtk-kw"></span><br></p>
+        <p>
+        <span id="rtk-num"></span><br>
+        <span id="grade"></span><br></p>
+    </div>
+    <div>
+        <p id="readings"></p><br>
+        <p id="words"></p><br>
+    </div>
+    <div style="margin-top: 20px;"><button id="prv-btn">Previous</button></div>
+    <div style="margin-top: 20px; text-align: right;"><button id="nxt-btn">Next</button></div>
+</div>
+
+<script>
+    function createPartial(func /*, 0..n args */) {
+            var args = Array.prototype.slice.call(arguments, 1);
+            return function () {
+                var allArguments = args.concat(Array.prototype.slice.call(arguments));
+                return func.apply(this, allArguments);
+            };
+        }
+    document.getElementById("kanji-name").innerHTML = kanji["kanji-name"]
+    document.getElementById("rtk-num").innerHTML = `RTK: ${kanji["rtk-num"]}`
+    document.getElementById("rtk-kw").innerHTML = kanji["rtk-kw"]
+    document.getElementById("grade").innerHTML = `Grade: ${kanji["grade"]}`
+    document.getElementById("readings").innerHTML = kanji["readings"]
+    document.getElementById("words").innerHTML = format_words(kanji)
+    document.getElementById("prv-btn").onclick = createPartial(nav,kanji,-1)
+    document.getElementById("nxt-btn").onclick = createPartial(nav,kanji, 1)
+</script>
+
+<style>
+    .wrapper {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-column-gap: 10px;
+        font-family: "Shippori Mincho";
+        border: 2px solid whitesmoke;
+    }
+    #kanji-name{
+        font-size: 9rem;
+    }
+    #rtk-kw{
+        font-size: 3rem;
+    }
+    #rtk-num{
+        font-size: 2.5rem;
+    }
+    #grade{
+        font-size: 2.5rem;
+    }
+    #readings{
+        font-size: 2rem;
+        text-align: right;
+    }
+    #words{
+        font-size: 1.5rem;
+        line-height: 3rem;
+        text-align: justify;
+    }
+</style>
