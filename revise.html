@@ -7,9 +7,10 @@ author_profile: false
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Shippori Mincho">
 <script src="kanji.js"></script>
 <script>
-    const searchParams = new URLSearchParams(window.location.search)
-    const kanji_q = searchParams.get("")
-    const kanji = kanji_db[kanji_q]
+    const searchParams = new URLSearchParams(window.location.search);
+    const kanji_q = searchParams.get("");
+    if(!kanji_q) window.location.href = "?=一";
+    const kanji = kanji_db[kanji_q];
 </script>
 
 <div class="wrapper">
@@ -29,21 +30,21 @@ author_profile: false
 </div>
 
 <script>
-    function createPartial(func /*, 0..n args */) {
-            var args = Array.prototype.slice.call(arguments, 1);
+    const createPartial = (func /*, 0..n args */) => {
+            const args = Array.prototype.slice.call(arguments, 1);
             return function () {
-                var allArguments = args.concat(Array.prototype.slice.call(arguments));
+                const allArguments = args.concat(Array.prototype.slice.call(arguments));
                 return func.apply(this, allArguments);
             };
         }
-    document.getElementById("kanji-name").innerHTML = kanji["kanji-name"]
-    document.getElementById("rtk-num").innerHTML = `RTK: ${kanji["rtk-num"]}`
-    document.getElementById("rtk-kw").innerHTML = kanji["rtk-kw"]
-    document.getElementById("grade").innerHTML = `Grade: ${kanji["grade"]}`
-    document.getElementById("readings").innerHTML = kanji["readings"]
-    document.getElementById("words").innerHTML = format_words(kanji)
-    document.getElementById("prv-btn").onclick = createPartial(nav,kanji,-1)
-    document.getElementById("nxt-btn").onclick = createPartial(nav,kanji, 1)
+    document.getElementById("kanji-name").innerHTML = kanji["kanji-name"];
+    document.getElementById("rtk-num").innerHTML = `RTK: ${kanji["rtk-num"]}`;
+    document.getElementById("rtk-kw").innerHTML = kanji["rtk-kw"];
+    document.getElementById("grade").innerHTML = `Grade: ${kanji["grade"]}`;
+    document.getElementById("readings").innerHTML = kanji["readings"];
+    document.getElementById("words").innerHTML = format_words(kanji);
+    document.getElementById("prv-btn").onclick = createPartial(nav,kanji,-1);
+    document.getElementById("nxt-btn").onclick = createPartial(nav,kanji, 1);
 </script>
 
 <style>
