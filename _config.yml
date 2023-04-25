@@ -1,4 +1,5 @@
-theme: minimal-mistakes-jekyll
+# theme: minimal-mistakes-jekyll
+remote_theme: "mmistakes/minimal-mistakes"
 minimal_mistakes_skin: "dark"
 locale: "ja-JP"
 
@@ -27,8 +28,8 @@ defaults:
 
 description: >- # this means to ignore newlines until "baseurl:"
   Personal site to help revise RTK
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: https://ificiana.github.io  # the base hostname and protocol for your site, e.g. http://example.com
+baseurl: /rtk/
 
 plugins:
   - jekyll-include-cache
