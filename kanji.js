@@ -2,12 +2,12 @@ import kanji_db from './kanji_db.json' assert { type: 'json' };
 
 
 const format_words = v => {
-    word_string = v.words.join("、");
-    res = "";
+    const word_string = v.words.join("、");
+    let res = "";
     for (const i of [...Array(word_string.length).keys()]){
-        char = word_string[i];
+        const char = word_string[i];
         if(word_string.charCodeAt(i)>=0x4e00 && word_string.charCodeAt(i)<=0x9faf){
-            res+=`<a href="?=${char}"><ruby> ${char} <rp>[</rp><rt>${(char in kanji_db)?kanji_db[char]["rtk-num"]: "?"}</rt><rp>]</rp></ruby></a>`;
+            res+=`<a href="?=${char}"><ruby> ${char} <rp>[</rp><rt>${(char in kanji_db)?kanji_db[char]["no"]: "?"}</rt><rp>]</rp></ruby></a>`;
         }
         else res += word_string[i];
     }

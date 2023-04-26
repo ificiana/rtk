@@ -1,6 +1,6 @@
+from concurrent.futures import ThreadPoolExecutor
 import json
 import pandas
-import numpy as np
 import mechanicalsoup
 
 heisig_df = pandas.read_csv("heisig-kanjis/heisig-kanjis.csv")
@@ -15,7 +15,7 @@ def get_kanji_data(kanji):
     browser = mechanicalsoup.StatefulBrowser(
     soup_config={'features': 'html5lib'},
 )
-    data = browser.open(f"https://jpdb.io/kanji/{kanji}#a")
+    data = browser.open(f"https://jpdb.io/kanji/{kanji}?expand=v#a")
     soup = data.soup
 
     data = []
@@ -39,13 +39,16 @@ def get_kanji_data(kanji):
     keyword = soup.find('div', attrs={'class': 'subsection'}).text
     data["keyword"] = keyword
 
+    words = [_w["href"].split("/")[3] for _w in soup.select("div.subsection>.used-in>.jp>.plain")[:20]]
+    data["words"] = words
+
     print(kanji, data)
     return kanji, data
 
 
-print(heisig_df.head(5))
+# print(heisig_df.head(5))
 data = {}
-for e, i in enumerate(heisig_df["kanji"][:5]):
+def write(e, i):
     print(heisig_df.iloc[e].values)
     k, _data = get_kanji_data(i)
     # two way
@@ -55,9 +58,13 @@ for e, i in enumerate(heisig_df["kanji"][:5]):
         "kw": _data["keyword"],
         "type": _data["type"],
         "readings": _data["readings"],
-        "words": [],
+        "words": _data["words"],
     }
     data[k] = d
     data[_data["heisig"]] = d
     with open("kanji_db.json", "w") as f:
-        json.dump(data, f)
+        json.dump(data, f)        
+
+with ThreadPoolExecutor(1000) as exe:
+    for e, i in enumerate(heisig_df["kanji"][:5]):
+        exe.submit(write, e, i)

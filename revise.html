@@ -9,9 +9,7 @@ author_profile: false
 <script type="module">
     import kanjiJS from "./kanji.js";
     
-    const kanji_db = kanjiJS.kanji_db
-    console.log(kanji_db);
-
+    const kanji_db = kanjiJS.kanji_db;
     const searchParams = new URLSearchParams(window.location.search);
     const kanji_q = searchParams.get("");
     if(!kanji_q) window.location.href = "?=一";
@@ -36,7 +34,7 @@ author_profile: false
     document.getElementById("rtk-kw").innerHTML = kanji["kw"];
     document.getElementById("grade").innerHTML = kanji["type"];
     document.getElementById("readings").innerHTML = parseReadings();
-    // document.getElementById("words").innerHTML = kanjiJS.format_words(kanji);
+    document.getElementById("words").innerHTML = kanjiJS.format_words(kanji);
     document.getElementById("prv-btn").onclick = createPartial(kanjiJS.nav, kanji, -1);
     document.getElementById("nxt-btn").onclick = createPartial(kanjiJS.nav, kanji, 1);
 
