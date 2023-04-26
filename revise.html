@@ -4,8 +4,8 @@ layot: single
 author_profile: false
 ---
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Shippori Mincho">
-<script type="module" src="./kanji.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Shippori Mincho" rel="stylesheet">
+<script src="./kanji.js" type="module"></script>
 <script type="module">
     import kanjiJS from "./kanji.js";
     
@@ -38,22 +38,27 @@ author_profile: false
     document.getElementById("prv-btn").onclick = createPartial(kanjiJS.nav, kanji, -1);
     document.getElementById("nxt-btn").onclick = createPartial(kanjiJS.nav, kanji, 1);
 
+
 </script>
 
 <div class="wrapper">
     <div style="text-align: center;">
         <p><span id="kanji-name"></span><br>
-        <span id="rtk-kw"></span><br></p>
+            <span id="rtk-kw"></span><br></p>
         <p>
-        <span id="rtk-num"></span><br>
-        <span id="grade"></span><br></p>
+            <span id="rtk-num"></span><br>
+            <span id="grade"></span><br></p>
     </div>
     <div>
         <p id="readings"></p><br>
         <p id="words"></p><br>
     </div>
-    <div style="margin-top: 20px;"><button id="prv-btn">Previous</button></div>
-    <div style="margin-top: 20px; text-align: right;"><button id="nxt-btn">Next</button></div>
+    <div style="margin-top: 20px;">
+        <button id="prv-btn">Previous</button>
+    </div>
+    <div style="margin-top: 20px; text-align: right;">
+        <button id="nxt-btn">Next</button>
+    </div>
 </div>
 
 <style>
@@ -85,4 +90,5 @@ author_profile: false
         line-height: 3rem;
         text-align: justify;
     }
+
 </style>

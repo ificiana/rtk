@@ -9,6 +9,7 @@ categories: blog
 
 幸運を祈ってね！
 
-[Revise](/revise.html)　ページをやってみて！
+[Revise](/revise.html)ページをやってみて！
 
-これから離れて、このサイトは私の個人サイト作るために使うサンドボックスです。PWAというテクノロジーも学んでいます。個人サイトは[ここ](https://ificiana.github.io/)です。
+これから離れて、このサイトは私の個人サイト作るために使うサンドボックスです。PWAというテクノロジーも学んでいます。個人サイトは[ここ](https://ificiana.github.io/)
+です。
