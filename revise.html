@@ -1,6 +1,6 @@
 ---
 permalink: /revise.html
-layot: single
+layout: default
 author_profile: false
 ---
 
@@ -12,7 +12,8 @@ author_profile: false
     const kanji_db = kanjiJS.kanji_db;
     const searchParams = new URLSearchParams(window.location.search);
     const kanji_q = searchParams.get("");
-    if(!kanji_q) window.location.href = "?=一";
+    if(!kanji_q) window.location.href = "?=一#a";
+    else window.location.href = "#a";
     const kanji = kanji_db[kanji_q];
 
     const createPartial = (func, ...args) => {
@@ -40,55 +41,58 @@ author_profile: false
 
 
 </script>
-
-<div class="wrapper">
-    <div style="text-align: center;">
-        <p><span id="kanji-name"></span><br>
-            <span id="rtk-kw"></span><br></p>
-        <p>
-            <span id="rtk-num"></span><br>
-            <span id="grade"></span><br></p>
+<section id="a" data-instant-mousedown-shortcut data-instant-intensity="viewport-all">
+    <div class="wrapper">
+        <div style="text-align: center;">
+            <p><span id="kanji-name"></span><br>
+                <span id="rtk-kw"></span><br></p>
+            <p>
+                <span id="rtk-num"></span><br>
+                <span id="grade"></span><br></p>
+        </div>
+        <div>
+            <p id="readings"></p><br>
+            <p id="words"></p><br>
+        </div>
+        <div style="margin-top: 20px;">
+            <button id="prv-btn">Previous</button>
+        </div>
+        <div style="margin-top: 20px; text-align: right;">
+            <button id="nxt-btn">Next</button>
+        </div>
     </div>
-    <div>
-        <p id="readings"></p><br>
-        <p id="words"></p><br>
-    </div>
-    <div style="margin-top: 20px;">
-        <button id="prv-btn">Previous</button>
-    </div>
-    <div style="margin-top: 20px; text-align: right;">
-        <button id="nxt-btn">Next</button>
-    </div>
-</div>
-
+</section>
 <style>
     .wrapper {
         display: grid;
         grid-template-columns: 1fr 2fr;
-        grid-column-gap: 10px;
+        grid-column-gap: 1rem;
         font-family: "Shippori Mincho";
         border: 2px solid whitesmoke;
+        padding: 2rem;
     }
     #kanji-name{
-        font-size: 9rem;
+        font-size: calc(1rem + 10vw);
     }
     #rtk-kw{
-        font-size: 3rem;
+        font-size: calc(1rem + 4vw);
     }
     #rtk-num{
-        font-size: 2.5rem;
+        font-size: calc(1rem + 2vw);
     }
     #grade{
-        font-size: 2.5rem;
+        font-size: calc(1rem + 2vw);
     }
     #readings{
-        font-size: 2rem;
-        text-align: right;
+        font-size: calc(1rem + 1vw);
+        text-align: justify;
     }
     #words{
-        font-size: 1.5rem;
+        font-size: calc(1rem + 1vw);
         line-height: 3rem;
         text-align: justify;
     }
 
 </style>
+<script src="//instant.page/5.2.0" type="module"
+    integrity="sha384-jnZyxPjiipYXnSU0ygqeac2q7CVYMbh84q0uHVRRxEtvFPiQYbXWUorga2aqZJ0z"></script>
