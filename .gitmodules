@@ -1,0 +1,3 @@
+[submodule "heisig-kanjis"]
+	path = heisig-kanjis
+	url = https://github.com/sdcr/heisig-kanjis.git
