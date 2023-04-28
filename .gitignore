@@ -164,3 +164,7 @@ _site
 .sass-cache
 .jekyll-cache
 .jekyll-metadata
+
+# will not open-source the scraper to respect the sources
+bot/*
+scraper.py
