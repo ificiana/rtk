@@ -9,5 +9,12 @@
     "background_color":"#ffffff",
     "display":"minimal-ui",
     "start_url": "/rtk/",
-    "scope": "/"
+    "scope": "/",
+    "shortcuts" : [
+        {
+            "name": "Start revising",
+            "url": "/revise.html",
+            "description": "Start revising the RTK"
+        }
+    ]
 }
